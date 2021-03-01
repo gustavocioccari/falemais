@@ -1,7 +1,7 @@
 
 exports.up = function(knex) {
   return knex.schema.createTable('fees', function(table){
-    table.number('id').primary()
+    table.int('id').primary()
     table.string('from', 3).notNullable()
     table.string('to', 3).notNullable()
     table.float('cost_per_min').notNullable()
