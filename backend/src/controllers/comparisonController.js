@@ -2,6 +2,7 @@ const connection = require('../database/connection')
 
 module.exports = {
     async compare (req, res) {
+      console.log(req.body)
       try{
         const {from, to, callMinutes} = req.body
         const additionalFee = 1.10
@@ -24,7 +25,7 @@ module.exports = {
             const freeMinutes = 30
             var callCost30minPlan = ''
             if (callMinutes<=freeMinutes){
-              callCost30minPlan = 'Free'
+              callCost30minPlan = 0
               return callCost30minPlan
             }
             else{
@@ -37,7 +38,7 @@ module.exports = {
             const freeMinutes = 60
             var callCost60minPlan = ''
             if (callMinutes<=freeMinutes){
-              callCost60minPlan = 'Free'
+              callCost60minPlan = 0
               return callCost60minPlan
             }
             else{
@@ -50,7 +51,7 @@ module.exports = {
             const freeMinutes = 120
             var callCost120minPlan = ''
             if (callMinutes<=freeMinutes){
-              callCost120minPlan = 'Free'
+              callCost120minPlan = 0
               return callCost120minPlan
             }
             else{
