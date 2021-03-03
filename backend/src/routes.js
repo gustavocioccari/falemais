@@ -12,6 +12,6 @@ routes.get('/fees',feesController.get)
 routes.post('/newplan',plansController.create)
 routes.get('/plans',plansController.get)
 
-routes.get('/comparison',comparisonController.compare)
+routes.post('/comparison',comparisonController.compare)
 
 module.exports = routes
