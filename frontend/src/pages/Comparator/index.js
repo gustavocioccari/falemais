@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import api from '../../services/api'
+import './styles.css'
 
 export default function ComparePlans(){
   const [from, setFrom] = useState('')
@@ -10,7 +11,7 @@ export default function ComparePlans(){
 
   const setTable = compare ?
 
-      <div>
+      <div className="comparison-container">
         <ul>
             <li>
               <strong>{costs.noPlan.plan}</strong>
@@ -43,6 +44,10 @@ export default function ComparePlans(){
     try{
       await api.post('/comparison', comparisonBody)
         .then(response=>{
+          console.log(response)
+          if (response.status === 404){
+            alert('Erro ao realizar comparação, tente novamente.')
+          }
           setCosts(response.data.comparison)
           setCompare(true)
         })
@@ -55,13 +60,13 @@ export default function ComparePlans(){
   return(
     <div className="comparator-container">
       <header>
-        {/* <img src={logoImg} alt="Be the Hero"/> */}
         <span>Bem vindo ao comparador de planos VxTel</span>
       </header>
       <form>
         <div>
           <label>DDD de Origem</label>
           <select value={from} onChange={e=>setFrom(e.target.value)}>
+            <option>Selecione...</option>
             <option value="011">011</option>
             <option value="016">016</option>
             <option value="017">017</option>
@@ -71,6 +76,7 @@ export default function ComparePlans(){
         <div>
           <label>DDD de Destino</label>
           <select value={to} onChange={e=>setTo(e.target.value)}>
+            <option>Selecione...</option>
             <option value="011">011</option>
             <option value="016">016</option>
             <option value="017">017</option>
