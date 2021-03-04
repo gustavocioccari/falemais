@@ -45,7 +45,7 @@ export default function ComparePlans(){
       await api.post('/comparison', comparisonBody)
         .then(response=>{
           console.log(response)
-          if (response.status === 404){
+          if (response.status === 400){
             alert('Erro ao realizar comparação, tente novamente.')
           }
           setCosts(response.data.comparison)

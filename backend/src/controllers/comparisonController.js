@@ -13,7 +13,10 @@ module.exports = {
                             to: to
                           })
                           .select('cost_per_min')
-
+        
+        if (feeReturn.length === 0)
+          return res.status(400).json("Erro na simulação")
+        
         const fee =feeReturn[0]['cost_per_min']
         
         const noPlanCallCost = fee*callMinutes
